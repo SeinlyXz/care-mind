@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('artikels', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('title'); // String column
-            $table->string('slug')->unique(); // String column with unique constraint
-            $table->string('thumbnail'); // String column
-            $table->string('author_id');
+            $table->string('title');
+            $table->text('content')->nullable();
+            $table->boolval('is_published')->default(false);
             // Author merujuk ke table redaktur sebagai foreign key
+            $table->string('author_id');
             $table->foreign('author_id')->references('id')->on('redakturs')->onDelete('restrict')->onUpdate('cascade');
-            // Long text column
-            $table->longText('content');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();  
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('artikels');
     }
 };
