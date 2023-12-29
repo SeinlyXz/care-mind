@@ -12,15 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artikels', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('title');
             $table->text('content')->nullable();
-            $table->boolval('is_published')->default(false);
-            // Author merujuk ke table redaktur sebagai foreign key
-            $table->string('author_id');
-            $table->foreign('author_id')->references('id')->on('redakturs')->onDelete('restrict')->onUpdate('cascade');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();  
+            $table->boolean('is_published')->default(false);
+            $table->string('thumbnail')->nullable();
+            // Use unsignedBigInteger for the foreign key
+            $table->unsignedBigInteger('author_id');
+
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('redakturs')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+
+            $table->timestamps();
         });
     }
 

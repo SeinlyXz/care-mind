@@ -5,9 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artikels extends Model
+class Jadwal extends Model
 {
-    protected $fillable = ['title', 'content', 'is_published', 'author_id'];
-
     use HasFactory;
 }
