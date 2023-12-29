@@ -13,7 +13,7 @@ return new class extends Migration
     {
         // Create a blueprint for the table
         Schema::create('redakturs', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('nama');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('redakturs');
     }
 };

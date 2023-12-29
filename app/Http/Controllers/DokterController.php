@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artikels;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 
-class ArtikelsController extends Controller
+class DokterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Artikels::all();
+        return Dokter::all();
     }
 
     /**
@@ -28,23 +28,13 @@ class ArtikelsController extends Controller
      */
     public function store(Request $request)
     {
-        // Store the request data to the database
-        $artikels = $request->all();
-
-        Artikels::create($artikels);
-
-        // Return a response with a product json
-        return response()->json([
-            'status' => (bool) $artikels,
-            'data'   => $artikels,
-            'message' => $artikels ? 'Artikel Created!' : 'Error Creating Artikel'
-        ]);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Artikels $artikels)
+    public function show(Dokter $dokter)
     {
         //
     }
@@ -52,7 +42,7 @@ class ArtikelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Artikels $artikels)
+    public function edit(Dokter $dokter)
     {
         //
     }
@@ -60,7 +50,7 @@ class ArtikelsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Artikels $artikels)
+    public function update(Request $request, Dokter $dokter)
     {
         //
     }
@@ -68,7 +58,7 @@ class ArtikelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Artikels $artikels)
+    public function destroy(Dokter $dokter)
     {
         //
     }

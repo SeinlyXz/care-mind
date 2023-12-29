@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User;
+use App\Http\Controllers\{User, ArtikelsController, RedaktursController, DokterController};
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +19,11 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [User::class, 'index']);
+
+Route::get('/artikel', [ArtikelsController::class, 'index']);
+
+Route::post('/artikel', [ArtikelsController::class, 'store']);
+
+Route::get('/redaktur', [RedaktursController::class, 'index']);
+
+Route::get('/dokter', [DokterController::class, 'index']);
