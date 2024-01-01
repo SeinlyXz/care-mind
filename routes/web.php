@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{User, ArtikelsController, RedaktursController, DokterController};
+use App\Models\Artikels;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +38,23 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard', function() {
-        return view('dashboard');
+        $artikels = Artikels::all();
+        return view('dashboard',[
+            'artikels' => $artikels
+        ]);
     })->name('dashboard');
 
-    Route::post('/artikel', [ArtikelsController::class, 'store']);
+    Route::post('/artikel', [ArtikelsController::class, 'store'])->name('artikel.store');
+    
     Route::get('/users', [User::class, 'index']);
 
-    Route::get('/artikel', [ArtikelsController::class, 'index']);
+    Route::get('/artikel', [ArtikelsController::class, 'index'])->name('artikel.index');
 
-    Route::get('/redaktur', [RedaktursController::class, 'index']);
+    Route::get('/artikel/{artikels}', [ArtikelsController::class, 'show'])->name('artikel.show');
+
+    Route::get('/artikel/{artikels}/edit', [ArtikelsController::class, 'edit'])->name('artikel.edit');
+
+    Route::get('/redaktur', [RedaktursController::class, 'index'])->name('redaktur.index');
 
     Route::get('/dokter', [DokterController::class, 'index']);
 });
