@@ -46,7 +46,9 @@ class ArtikelsController extends Controller
      */
     public function show(Artikels $artikels)
     {
-        //
+        // Get artikel by id
+        $artikels = Artikels::find($artikels->id);
+        return $artikels;
     }
 
     /**
@@ -54,7 +56,7 @@ class ArtikelsController extends Controller
      */
     public function edit(Artikels $artikels)
     {
-        //
+        return $artikels;
     }
 
     /**
@@ -62,7 +64,9 @@ class ArtikelsController extends Controller
      */
     public function update(Request $request, Artikels $artikels)
     {
-        //
+        // Get artikel by id
+        $artikels = Artikels::find($artikels->id);
+        return $artikels;
     }
 
     /**
