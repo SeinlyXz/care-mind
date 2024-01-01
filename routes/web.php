@@ -18,12 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', [User::class, 'index']);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
 
-Route::get('/artikel', [ArtikelsController::class, 'index']);
+    Route::get('/dashboard', function() {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::post('/artikel', [ArtikelsController::class, 'store']);
+    Route::post('/artikel', [ArtikelsController::class, 'store']);
+    Route::get('/users', [User::class, 'index']);
 
-Route::get('/redaktur', [RedaktursController::class, 'index']);
+    Route::get('/artikel', [ArtikelsController::class, 'index']);
 
-Route::get('/dokter', [DokterController::class, 'index']);
+    Route::get('/redaktur', [RedaktursController::class, 'index']);
+
+    Route::get('/dokter', [DokterController::class, 'index']);
+});
