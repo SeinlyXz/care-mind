@@ -17,3 +17,22 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/artikels', 'App\Http\Controllers\ArtikelsController@store');
+});
+
+Route::get('/login', function (Request $request) {
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        $token = $request->user()->createToken($request->user()->name)->plainTextToken;
+        return response()->json([
+            'token' => $token,
+            'user' => $request->user()
+        ]);
+    }
+    return response()->json([
+        'message' => 'Unauthorized'
+    ], 401);
+});
