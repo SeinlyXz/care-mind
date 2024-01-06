@@ -5,7 +5,7 @@
         <div class="bg-[#3B8A97] w-full">
             <div class="">
                 <div class="pb-4 pt-4 p-10">
-                    <a href="" class='text-white font-serif text-7xl font-bold '>Care Mind</a>
+                    <a href="" class='text-white text-7xl font-bold '>Care Mind</a>
                 </div>
                 <br>
                 <br>
