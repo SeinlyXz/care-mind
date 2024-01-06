@@ -19,6 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/chatpawsy', function () {
+    return view('chatpawsy');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
