@@ -33,6 +33,8 @@ Route::middleware([
     })->name('dashboard');
 
     Route::post('/artikel', [ArtikelsController::class, 'store'])->name('artikel.store');
+
+    Route::get('/artikel/create', [ArtikelsController::class, 'create'])->name('artikel.create');
     
     Route::get('/users', [User::class, 'index']);
 
@@ -43,6 +45,10 @@ Route::middleware([
     Route::get('/artikel/{artikels}/edit', [ArtikelsController::class, 'edit'])->name('artikel.edit');
 
     Route::get('/redaktur', [RedaktursController::class, 'index'])->name('redaktur.index');
+
+    Route::get('/redaktur/{redakturs}/edit', [RedaktursController::class, 'edit'])->name('redaktur.edit');
+
+    Route::delete('/redaktur/{redakturs}', [RedaktursController::class, 'destroy'])->name('redaktur.destroy');
 
     Route::get('/dokter', [DokterController::class, 'index']);
 });
