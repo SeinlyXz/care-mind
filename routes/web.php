@@ -32,21 +32,25 @@ Route::get('/chatpawsy', function () {
     return view('chatpawsy');
 });
 
+Route::get('/chatpsikolog', function () {
+    return view('chatpsikolog');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
 
-    Route::get('/dashboard', function() {
+    Route::get('/dashboard', function () {
         $artikels = Artikels::all();
-        return view('dashboard',[
+        return view('dashboard', [
             'artikels' => $artikels
         ]);
     })->name('dashboard');
 
     Route::post('/artikel', [ArtikelsController::class, 'store'])->name('artikel.store');
-    
+
     Route::get('/users', [User::class, 'index']);
 
     Route::get('/artikel', [ArtikelsController::class, 'index'])->name('artikel.index');
