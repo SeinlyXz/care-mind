@@ -19,15 +19,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/chatpawsy', function () {
+    return view('chatpawsy');
+});
+
+Route::get('/chatpsikolog', function () {
+    return view('chatpsikolog');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
 
-    Route::get('/dashboard', function() {
+    Route::get('/dashboard', function () {
         $artikels = Artikels::all();
-        return view('dashboard',[
+        return view('dashboard', [
             'artikels' => $artikels
         ]);
     })->name('dashboard');
