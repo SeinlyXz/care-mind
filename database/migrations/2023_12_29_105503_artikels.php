@@ -12,15 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artikels', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('title'); // String column
-            $table->string('slug')->unique(); // String column with unique constraint
-            $table->string('thumbnail'); // String column
-            $table->string('author_id');
-            // Author merujuk ke table redaktur sebagai foreign key
-            $table->foreign('author_id')->references('id')->on('redakturs')->onDelete('restrict')->onUpdate('cascade');
-            // Long text column
-            $table->longText('content');
+            $table->id();
+            $table->string('title');
+            $table->text('content')->nullable();
+            $table->boolean('is_published')->default(false);
+            $table->string('thumbnail')->nullable();
+            // Use unsignedBigInteger for the foreign key
+            $table->unsignedBigInteger('author_id');
+
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('redakturs')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('artikels');
     }
 };
