@@ -17,7 +17,9 @@
                 </div><br>
                 <div class="bg-[#71B9C5] rounded-lg bg-opacity-25 p-7 w-96 h-28">
                     <p class="text-white -px-1 -pt-9 text-lg"> Merasa butuh penanganan lebih?</p>
-                    <button class="bg-[#2E5A61] text-white font-bold py-2 px-4 rounded-lg">Hubungi Psikolog</button>
+                    <div class="pt-2">
+                        <a href="{{url('chatpsikolog')}}" class="bg-[#2E5A61] text-white font-bold py-2 px-4 rounded-lg">Hubungi Psikolog</a>
+                    </div>
                 </div><br>
                 <div class="bg-[#2E5A61] rounded-lg bg-opacity-25 p-7 w-96 h-40">
                     <p class="text-white -px-1 -pt-9 text-lg"> Layanan Darurat </p>

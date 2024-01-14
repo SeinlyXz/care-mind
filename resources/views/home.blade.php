@@ -28,9 +28,9 @@
     </div>
     <div class="bg-teal-800 w-full pt-10">
         <div class="flex gap-3 -ms-5">
-            <button class="bg-teal-800 px-[35px] py-4 text-white rounded-xl text-3xl">Tentang Kami</button>
-            <button class="bg-teal-800 px-[35px] py-4 text-white rounded-xl text-3xl">Galeri</button>
-            <button class="bg-teal-800 px-[35px] py-4 text-white rounded-xl text-3xl">Kontak</button>
+            <a href="#tentang-kami" class="bg-teal-800 px-[35px] py-4 text-white rounded-xl text-3xl">Tentang Kami</a>
+            <a href="#galeri" class="bg-teal-800 px-[35px] py-4 text-white rounded-xl text-3xl">Galeri</a>
+            <a href="#kontak" class="bg-teal-800 px-[35px] py-4 text-white rounded-xl text-3xl">Kontak</a>
         </div>
         <div class="absolute top-72">
             <img src="/img/oren-hi.png" alt="">
@@ -38,7 +38,7 @@
     </div>
 </div>
 <div class="h-screen w-full flex justify-center">
-    <div class="bg-white w-full p-52">
+    <div class="bg-white w-full p-52" id="tentang-kami">
         <img src="/vertical-line.svg" alt="" class="absolute w-48 left-1">
         <div class="w-[500px]">
             <p class="text-4xl font-semibold">
@@ -47,7 +47,7 @@
         </div>
     </div>
 </div>
-<div class="h-screen w-full flex justify-center py-32">
+<div class="h-screen w-full flex justify-center py-32" id="galeri">
     <div class="bg-[#3B8A978C] w-[800px] flex-shrink-0 ms-1.5 ">
     </div>
     <div class="relative w-full bg-white h-96 my-auto -ms-32">
@@ -74,7 +74,7 @@
 </div>
 <div class="min-h-screen w-full flex justify-center">
     <div class="flex flex-col">
-        <div class="bg-white">
+        <div class="bg-white" id="kontak">
             <div class= "">
                 <p class="text-5xl font-semibold ">
                     Butuh Tindakan Lanjut?
@@ -146,9 +146,9 @@
                 lain yang memiliki perjuangan emosional serupa.
             </p>
             <div class="flex justify-center">
-                <button class="bg-[#296099] px-4 py-3 rounded-xl text-2xl text-white">
+                <a href="{{ url("login") }}"class="bg-[#296099] px-4 py-3 rounded-xl text-2xl text-white">
                     Gabung Sekarang
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -156,10 +156,5 @@
         
     </div>
 </div>
-
-
-
-
-
 
 @endsection
