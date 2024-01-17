@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{User, ArtikelsController, RedaktursController, DokterController};
+use App\Http\Controllers\{User, ArtikelsController, RedaktursController, DokterController, PusherController};
 use App\Models\Artikels;
 
 /*
@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
 
 Route::get('/aboutus', function () {
     return view('aboutus');
@@ -31,6 +34,8 @@ Route::get('/contact', function () {
 Route::get('/chatpawsy', function () {
     return view('chatpawsy');
 });
+
+Route::post('/chatpawsy', [App\Http\Controllers\ChatPawsy::class, 'store'])->name('chatpawsy.store');
 
 Route::get('/chatpsikolog', function () {
     return view('chatpsikolog');
@@ -51,6 +56,8 @@ Route::middleware([
 
     Route::post('/artikel', [ArtikelsController::class, 'store'])->name('artikel.store');
 
+    Route::get('/artikel/create', [ArtikelsController::class, 'create'])->name('artikel.create');
+  
     Route::get('/users', [User::class, 'index']);
 
     Route::get('/artikel', [ArtikelsController::class, 'index'])->name('artikel.index');
@@ -60,6 +67,10 @@ Route::middleware([
     Route::get('/artikel/{artikels}/edit', [ArtikelsController::class, 'edit'])->name('artikel.edit');
 
     Route::get('/redaktur', [RedaktursController::class, 'index'])->name('redaktur.index');
+
+    Route::get('/redaktur/{redakturs}/edit', [RedaktursController::class, 'edit'])->name('redaktur.edit');
+
+    Route::delete('/redaktur/{redakturs}', [RedaktursController::class, 'destroy'])->name('redaktur.destroy');
 
     Route::get('/dokter', [DokterController::class, 'index']);
 });

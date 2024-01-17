@@ -12,7 +12,8 @@ class ArtikelsController extends Controller
      */
     public function index()
     {
-        return Artikels::all();
+        $artikels = Artikels::with('author')->get();
+        return view('artikels.index', compact('artikels'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ArtikelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('artikels.create');
     }
 
     /**
@@ -48,7 +49,14 @@ class ArtikelsController extends Controller
     {
         // Get artikel by id
         $artikels = Artikels::find($artikels->id);
-        return $artikels;
+
+        // Add author to artikel
+        $author = $artikels->author;
+
+        return view('artikel.index', [
+            'artikels' => $artikels,
+            'author' => $author
+        ]);
     }
 
     /**

@@ -12,7 +12,8 @@ class RedaktursController extends Controller
      */
     public function index()
     {
-        return Redakturs::all();
+        $redakturs = Redakturs::all();
+        return view('redaktur.index', compact('redakturs'));
     }
 
     /**
@@ -44,7 +45,7 @@ class RedaktursController extends Controller
      */
     public function edit(Redakturs $redakturs)
     {
-        //
+        return view('redaktur.edit', compact('redakturs'));
     }
 
     /**
@@ -60,6 +61,13 @@ class RedaktursController extends Controller
      */
     public function destroy(Redakturs $redakturs)
     {
-        //
+        $redaktur = Redakturs::find($redakturs->id);
+        // check if redaktur exists before deleting
+        if (!isset($redaktur)){
+            return view('redaktur.index')->with('error', 'redaktur not found');
+        }
+        $redaktur->delete();
+        // return with http status code 200
+        return redirect('/redaktur')->with('code', '204');
     }
 }
