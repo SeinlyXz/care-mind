@@ -57,7 +57,7 @@ Route::middleware([
     Route::post('/artikel', [ArtikelsController::class, 'store'])->name('artikel.store');
 
     Route::get('/artikel/create', [ArtikelsController::class, 'create'])->name('artikel.create');
-    
+  
     Route::get('/users', [User::class, 'index']);
 
     Route::get('/artikel', [ArtikelsController::class, 'index'])->name('artikel.index');
