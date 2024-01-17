@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{User, ArtikelsController, RedaktursController, DokterController};
+use App\Http\Controllers\{User, ArtikelsController, RedaktursController, DokterController, PusherController};
 use App\Models\Artikels;
 
 /*
@@ -34,6 +34,8 @@ Route::get('/contact', function () {
 Route::get('/chatpawsy', function () {
     return view('chatpawsy');
 });
+
+Route::post('/chatpawsy', [App\Http\Controllers\ChatPawsy::class, 'store'])->name('chatpawsy.store');
 
 Route::get('/chatpsikolog', function () {
     return view('chatpsikolog');
