@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('profile_picture')->default('/img/I_Putu_Galang_Dharma_Putra-removebg-preview.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });

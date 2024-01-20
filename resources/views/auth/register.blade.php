@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <title>Buat Akun</title>
     <x-authentication-card>
         <x-slot name="logo">
             <x-application-logo />

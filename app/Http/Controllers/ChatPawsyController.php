@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use OpenAI\Laravel\Facades\OpenAI;
+use App\Models\Chatpawsy;
 
-class ChatPawsy extends Controller
+class ChatPawsyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,6 +30,21 @@ class ChatPawsy extends Controller
     
     public function store(Request $request)
     {
+        $ip = $request->ip();
+        // Check if same IP address has been used before
+        $chatpawsy = Chatpawsy::where('ip_address', $ip)->first();
+
+         // Jika sudah pernah berkonsultasi, tambahkan hit count
+        if ($chatpawsy) {
+            $chatpawsy->increment('hit_count');
+        } else {
+            // Jika belum pernah berkonsultasi, tambahkan data baru
+            Chatpawsy::create([
+                'ip_address' => $ip,
+                'hit_count' => 1
+            ]);
+        }
+
         $requestData = [
             'contents' => [
                 'parts' => [
