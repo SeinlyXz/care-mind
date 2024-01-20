@@ -52,10 +52,15 @@ npm i
 Migrating Database:
 ```
 php artisan migrate
+php artisan db:seed
 ```
 
-Start development server
+Build App:
+```
+npm run build
+```
+
+Start server
 ```
 php artisan server
-npm run dev
 ```
