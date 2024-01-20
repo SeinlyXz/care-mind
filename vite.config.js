@@ -7,6 +7,8 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/chatpawsy.js',
+                'resources/js/chatpsikolog.js',
             ],
             refresh: true,
         }),

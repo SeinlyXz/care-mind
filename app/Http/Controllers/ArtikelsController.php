@@ -13,6 +13,7 @@ class ArtikelsController extends Controller
     public function index()
     {
         $artikels = Artikels::with('author')->get();
+        $artikels = Artikels::paginate(3);
         return view('artikels.index', compact('artikels'));
     }
 
@@ -52,8 +53,7 @@ class ArtikelsController extends Controller
 
         // Add author to artikel
         $author = $artikels->author;
-
-        return view('artikel.index', [
+        return view('artikels.show', [
             'artikels' => $artikels,
             'author' => $author
         ]);
