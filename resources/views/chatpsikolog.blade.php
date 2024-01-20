@@ -32,15 +32,25 @@
             </div>
             <div class="md:w-[800px] pt-10">
                 <div class="md:flex md:flex-col bg-gray-100 rounded-2xl">
-                    <div class="bg-[#3B8A97] opacity-80 py-2 flex justify-items-start">
-                        <img class="w-20 px-2 rounded-full object-cover" src="{{ $dokter->profile_picture }}" alt="">
-                        <div class=" flex flex-col justify my-auto">
-                            <h1 class="text-lg text-left text-white">{{ $dokter->nama }}</h1>
-                            <div class="status-loading"></div>
+                    <div class="bg-[#3B8A97] opacity-80 py-2 flex justify-between">
+                        <div class="flex">
+                            <img class="w-20 px-2 rounded-full object-cover" src="{{ $dokter->profile_picture }}"
+                                alt="">
+                            <div class=" flex flex-col justify my-auto">
+                                <h1 class="text-lg text-left text-white">{{ $dokter->nama }}</h1>
+                                <div class="status-loading"></div>
+                            </div>
+                        </div>
+                        <div class="my-auto px-5">
+                            <button id="clearButton">
+                                <div class="bg-red-600 hover:bg-red-700 flex items-center p-2 rounded-lg shadow-lg">
+                                    <x-trashbin />
+                                </div>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex-grow overflow-y-scroll h-[32rem] max-h-[32rem]">
-                        <div class="flex flex-col space-y-2 md:p-4 p-2 chat-message">
+                    <div class="flex-grow overflow-y-scroll h-[32rem] max-h[32rem]">
+                        <div class="flex flex-col space-y-2 p-4 chat-message">
                         </div>
                     </div>
                     <form>
@@ -48,7 +58,7 @@
                             <input type="text" name="message" id="message" placeholder="Sampaikan pesanmu..."
                                 class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-teal-500"
                                 autocomplete="off" />
-                            <input type="hidden" value="{{$dokter->nama}}" id="nama_dokter">
+                            <input type="hidden" value="{{ $dokter->nama }}" id="nama_dokter">
                             <button type="submit" class="ml-2 rounded-lg bg-[#3B8A97] px-4 py-2 text-white">Send</button>
                         </div>
                     </form>

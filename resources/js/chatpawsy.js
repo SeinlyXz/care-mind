@@ -19,13 +19,24 @@ $(document).ready(function() {
         message = formatMessage(message);
 
         var chatMessage = `
-            <div class="${messageClass} max-w-[200px] md:max-w-[300px] rounded-xl ${rounded} ${bgColor} py-2 px-3 text-white">
-                ${message}
+            <div class="flex items-center ${messageClass} rounded-xl ${rounded} ${bgColor} py-2 px-3 text-white max-w-xl">
+                <div class="flex flex-col">
+                    ${message}
+                </div>
             </div>
             `;
 
         chatContainer.append(chatMessage);
     }
+    appendChatBox("Halo, saya pawsy, chatbot yang akan membantu kamu mengenal diri sendiri. Silakan ketik pesanmu di sini.", false);
+
+    $("#clearButton").on("click", function() {
+        // Remove data from local storage
+        localStorage.clear();
+
+        // Clear the chat messages on the UI
+        $(".chat-message").empty();
+    });
 
     // Function to update chat history
     function updateChatHistory(message, isSender) {
@@ -76,7 +87,6 @@ $(document).ready(function() {
             chatContainer.html(yourFriendMessage);
         }
     }
-
     let isLoading = false;
     loading(isLoading);
     // Your existing form submission logic
@@ -84,11 +94,10 @@ $(document).ready(function() {
         event.preventDefault();
         if(isLoading) return;
 
-        isLoading = true;
-        loading(isLoading);
-
         var message = $("#message").val();
         if(message == "") return;
+        isLoading = true;
+        loading(isLoading);
         if(message == 'clear')
         {
             localStorage.clear();

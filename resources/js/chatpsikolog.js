@@ -10,16 +10,14 @@ $(document).ready(function () {
     function appendChatBox(message, isSender) {
         var chatContainer = $(".chat-message");
         var messageClass = isSender ? "self-end" : "self-start";
-        var textAlign = isSender ? "text-end" : "text-start";
         var bgColor = isSender ? "bg-[#3B8A97]" : "bg-[#3B8A97]";
         var rounded = isSender ? "rounded-tr" : "rounded-tl";
 
-        // Manipulate the message content
-        message = formatMessage(message);
-
         var chatMessage = `
-            <div class="${messageClass} ${textAlign} max-w-[200px] md:max-w-[100px] rounded-xl ${rounded} ${bgColor} py-2 px-3 text-white">
-                ${message}
+            <div class="flex items-center ${messageClass} rounded-xl ${rounded} ${bgColor} py-2 px-3 text-white max-w-xl">
+                <div class="flex flex-col">
+                    ${message}
+                </div>
             </div>
             `;
 
@@ -27,7 +25,14 @@ $(document).ready(function () {
         // Scroll to the top of page
         chatContainer.scrollTop(chatContainer.prop("top"));
     }
+    appendChatBox("Selamat datang di chatpsikolog, ketik pesanmu di sini dan tunggu balasan dari psikolog ya :)", false);
+    $("#clearButton").on("click", function() {
+        // Remove data from local storage
+        localStorage.clear();
 
+        // Clear the chat messages on the UI
+        $(".chat-message").empty();
+    });
     // Function to update chat history
     function updateChatHistory(message, isSender, nama_dokter) {
         var newMessage = {
@@ -52,7 +57,6 @@ $(document).ready(function () {
     function loadChatHistory(nama_dokter) {
         // Clear existing chat
         $(".chat-message").empty();
-
         // Filter and display chat history for the selected dokter
         chatHistoryPsikolog.forEach(function (item) {
             if (item.nama_dokter === nama_dokter) {
@@ -126,7 +130,7 @@ $(document).ready(function () {
             // Manipulate the response message content
             response.message = formatMessage(response.message);
             appendChatBox(response.message, false); // Assuming the user is the receiver
-            updateChatHistory(message, true, nama_dokter); // Save sender's message to chat history
+            updateChatHistory(response.message, false, nama_dokter); // Save sender's message to chat history
 
             // Clear the input field after sending the message
             $("#message").val("");
